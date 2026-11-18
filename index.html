@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0b0618" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>RIMU – THE PAGLI FRIEND 😈💗</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070412;
+      --card-bg: rgba(24, 15, 46, 0.72);
+      --card-border: rgba(255, 92, 184, 0.25);
+      --pink: #ff3e9d;
+      --purple: #9d4edd;
+      --blue: #3a86ff;
+      --cyan: #00f5d4;
+      --text-main: #ffffff;
+      --text-muted: #cbbde2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 15% 15%, #2b0947 0%, transparent 45%),
+                  radial-gradient(circle at 85% 25%, #0c2459 0%, transparent 45%),
+                  radial-gradient(circle at 50% 85%, #42092e 0%, transparent 50%),
+                  #05030d;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Mobile App Shell */
+    .app-shell {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      background: rgba(8, 5, 18, 0.45);
+      box-shadow: 0 0 60px rgba(157, 78, 221, 0.2);
+    }
+
+    /* Floating Particles Background */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -40px;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.7) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.8; }
+      85% { opacity: 0.7; }
+      100% { transform: translateY(-110vh) scale(1.2) rotate(360deg); opacity: 0; }
+    }
+
+    /* ==================== HOME / SPLASH SCREEN ==================== */
+    #homeScreen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px 22px;
+      position: relative;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    #homeScreen.hidden {
+      display: none;
+    }
+
+    .devil-avatar {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 35px rgba(255, 62, 157, 0.6), 0 0 70px rgba(58, 134, 255, 0.35);
+      animation: pulseGlow 2.4s infinite ease-in-out;
+      margin-bottom: 26px;
+    }
+
+    .devil-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #100720;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 62, 157, 0.55); }
+      50% { transform: scale(1.06); box-shadow: 0 0 50px rgba(157, 78, 221, 0.85), 0 0 80px rgba(58, 134, 255, 0.45); }
+    }
+
+    .welcome-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: 0.8px;
+      background: linear-gradient(90deg, #ff70b8, #c77dff, #4cc9f0, #ff70b8);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerText 4s linear infinite, fadeInUp 0.9s ease;
+      margin-bottom: 14px;
+    }
+
+    @keyframes shimmerText {
+      to { background-position: 200% center; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .welcome-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 18px;
+      border-radius: 30px;
+      margin-bottom: 38px;
+      backdrop-filter: blur(8px);
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .enter-btn {
+      border: none;
+      outline: none;
+      padding: 16px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      box-shadow: 0 8px 30px rgba(255, 62, 157, 0.55);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: bounceBtn 2s infinite;
+    }
+
+    .enter-btn:active {
+      transform: scale(0.95);
+    }
+
+    @keyframes bounceBtn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* ==================== MAIN APP INTERFACE ==================== */
+    #mainApp {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-bottom: 86px;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    #mainApp.active {
+      display: flex;
+    }
+
+    /* Top Header */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11, 6, 24, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 62, 157, 0.2);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      background: linear-gradient(90deg, #ff70b8, #a970ff, #60b4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Tab Content */
+    .content-area {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .tab-pane {
+      display: none;
+      animation: fadeInUp 0.35s ease;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Glass Cards */
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffd6ec;
+    }
+
+    /* Glowing Buttons */
+    .glow-btn {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      transition: transform 0.18s, box-shadow 0.2s;
+      background: linear-gradient(135deg, rgba(157, 78, 221, 0.28), rgba(58, 134, 255, 0.2));
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .glow-btn:last-child {
+      margin-bottom: 0;
+    }
+
+    .glow-btn:active {
+      transform: scale(0.97);
+    }
+
+    .glow-btn.pink {
+      background: linear-gradient(135deg, rgba(255, 62, 157, 0.45), rgba(157, 78, 221, 0.4));
+      box-shadow: 0 0 20px rgba(255, 62, 157, 0.3);
+    }
+
+    .glow-btn.danger {
+      background: linear-gradient(135deg, #d90429, #9d0208);
+      border-color: rgba(255, 110, 110, 0.5);
+      box-shadow: 0 0 22px rgba(217, 4, 41, 0.5);
+      justify-content: center;
+      text-align: center;
+      animation: emergencyPulse 1.6s infinite;
+    }
+
+    @keyframes emergencyPulse {
+      0%, 100% { box-shadow: 0 0 14px rgba(217, 4, 41, 0.5); }
+      50% { box-shadow: 0 0 30px rgba(255, 70, 90, 0.9); }
+    }
+
+    /* Mood Booster Box */
+    .mood-output {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 62, 157, 0.14);
+      border: 1px dashed rgba(255, 112, 184, 0.5);
+      font-size: 15px;
+      line-height: 1.55;
+      color: #ffe3f1;
+      display: none;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    /* Friendship Test */
+    .scanner-box {
+      background: rgba(10, 6, 22, 0.65);
+      border: 1px solid rgba(58, 134, 255, 0.35);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0;
+      display: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--cyan));
+      transition: width 0.2s;
+    }
+
+    .test-results {
+      display: none;
+      text-align: left;
+      margin-top: 12px;
+    }
+
+    .stat-row {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* Gift Box */
+    .gift-stage {
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .gift-emoji {
+      font-size: 74px;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.3s;
+      filter: drop-shadow(0 0 18px rgba(255, 62, 157, 0.6));
+      animation: wiggle 2.5s infinite;
+    }
+
+    .gift-emoji:active {
+      transform: scale(1.2) rotate(8deg);
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-6deg); }
+      40% { transform: rotate(6deg); }
+      60% { transform: rotate(-4deg); }
+      80% { transform: rotate(4deg); }
+    }
+
+    .compliment-card {
+      margin-top: 12px;
+      padding: 15px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(157, 78, 221, 0.28), rgba(255, 62, 157, 0.25));
+      border: 1px solid rgba(255, 160, 210, 0.45);
+      font-size: 16px;
+      font-weight: 600;
+      display: none;
+      animation: fadeInUp 0.35s ease;
+    }
+
+    /* Funny Challenge */
+    .challenge-box {
+      background: rgba(58, 134, 255, 0.14);
+      border: 1px solid rgba(58, 134, 255, 0.38);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .challenge-text {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #dff1ff;
+    }
+
+    .challenge-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mini-btn {
+      flex: 1;
+      border: none;
+      border-radius: 12px;
+      padding: 11px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+    }
+
+    .mini-btn.alt {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .timer-badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(0, 245, 212, 0.18);
+      color: var(--cyan);
+      font-weight: 700;
+      display: none;
+    }
+
+    /* Friendship Memories */
+    .memory-form input,
+    .memory-form textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      padding: 11px 13px;
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+
+    .memory-form input::placeholder,
+    .memory-form textarea::placeholder {
+      color: #a99bc2;
+    }
+
+    .file-label {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 112, 184, 0.5);
+      background: rgba(255, 62, 157, 0.1);
+      color: #ffb8dc;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .memory-item {
+      background: rgba(15, 10, 30, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 12px;
+      position: relative;
+    }
+
+    .memory-item img {
+      width: 100%;
+      max-height: 230px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .memory-date {
+      font-size: 12px;
+      color: #a697c0;
+      margin-bottom: 4px;
+    }
+
+    .del-mem {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(217, 4, 41, 0.8);
+      border: none;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Secret Message */
+    .secret-stage {
+      text-align: center;
+      padding: 16px 8px;
+    }
+
+    .lock-heart {
+      font-size: 72px;
+      cursor: pointer;
+      display: inline-block;
+      filter: drop-shadow(0 0 22px rgba(255, 62, 157, 0.7));
+      animation: pulseGlow 2s infinite;
+      margin-bottom: 12px;
+    }
+
+    .pass-box {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .pass-box input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 62, 157, 0.5);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+
+    .secret-letter {
+      display: none;
+      margin-top: 14px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255, 62, 157, 0.22), rgba(157, 78, 221, 0.25));
+      border: 1px solid rgba(255, 130, 195, 0.55);
+      line-height: 1.75;
+      font-size: 15.5px;
+      color: #fff2f8;
+      text-align: center;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    /* Closing Card */
+    .closing-footer {
+      background: linear-gradient(135deg, rgba(255, 62, 157, 0.16), rgba(58, 134, 255, 0.16));
+      border: 1px solid rgba(255, 112, 184, 0.35);
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #ffe3f3;
+      margin-top: 8px;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      max-width: 440px;
+      background: rgba(12, 7, 26, 0.92);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 62, 157, 0.25);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 4px 10px;
+      z-index: 30;
+    }
+
+    .nav-item {
+      background: none;
+      border: none;
+      color: #9e8fb8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      gap: 3px;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+
+    .nav-item span.ico {
+      font-size: 20px;
+    }
+
+    .nav-item.active {
+      color: #ff70b8;
+      background: rgba(255, 62, 157, 0.12);
+    }
+
+    /* Modal Popup */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 2, 12, 0.82);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 370px;
+      background: linear-gradient(160deg, #1b0e36, #0d071d);
+      border: 1px solid rgba(255, 92, 184, 0.5);
+      border-radius: 24px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(255, 62, 157, 0.35);
+      animation: popIn 0.28s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-emoji {
+      font-size: 46px;
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #ff85c2;
+    }
+
+    .modal-text {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: #f3e8ff;
+      margin-bottom: 18px;
+    }
+
+    .modal-btn {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+    }
+
+    /* Fake Block Screen Overlay */
+    .fake-block-screen {
+      position: fixed;
+      inset: 0;
+      background: #09030b;
+      z-index: 120;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .fake-block-screen.open {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts & Stars -->
+  <div id="particles"></div>
+
+  <div class="app-shell">
+    <!-- ==================== ১. HOME SCREEN ==================== -->
+    <section id="homeScreen">
+      <div class="devil-avatar">
+        <div class="devil-avatar-inner">😈</div>
+      </div>
+      <h1 class="welcome-title">WELCOME TO RIMU'S CRAZY WORLD 😈</h1>
+      <p class="welcome-sub">“এই অ্যাপটা শুধু একটা পাগলির জন্য বানানো!”</p>
+      <button class="enter-btn" onclick="enterCrazyWorld()">ENTER MY CRAZY WORLD 💗</button>
+    </section>
+
+    <!-- ==================== MAIN APP ==================== -->
+    <main id="mainApp">
+      <header class="top-bar">
+        <div class="brand">😈 RIMU – THE PAGLI FRIEND 💗</div>
+        <div class="top-actions">
+          <button class="icon-btn" id="soundToggle" title="Sound" onclick="toggleSound()">🔊</button>
+          <button class="icon-btn" title="Home" onclick="backToHome()">🏠</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+
+        <!-- TAB 1: দুষ্টুমি, Mood Booster & Fake Emergency -->
+        <div id="tab-fun" class="tab-pane active">
+          <!-- ২. দুষ্টুমি সেকশন -->
+          <div class="section-card">
+            <h2 class="section-title">😈 দুষ্টুমি সেকশন</h2>
+            <button class="glow-btn pink" onclick="pagliBtn()">
+              <span>তুই একটা পাগলি 🤣</span><span>👉</span>
+            </button>
+            <button class="glow-btn" onclick="brainBtn()">
+              <span>তোর মাথায় সমস্যা আছে 🧠</span><span>👉</span>
+            </button>
+            <button class="glow-btn" onclick="blockBtn()">
+              <span>তোরে ব্লক দিবো 🚫</span><span>👉</span>
+            </button>
+            <button class="glow-btn" onclick="roastBtn()">
+              <span>রিমু বনাম বুদ্ধি 🥴</span><span>👉</span>
+            </button>
+            <button class="glow-btn" onclick="dailyMischiefBtn()">
+              <span>আজকের শয়তানি 🤭</span><span>👉</span>
+            </button>
+          </div>
+
+          <!-- ৩. Mood Booster -->
+          <div class="section-card">
+            <h2 class="section-title">🌸 Mood Booster</h2>
+            <button class="glow-btn pink" onclick="boostMood()">
+              <span>মন খারাপ? এখানে চাপ দে ❤️</span><span>✨</span>
+            </button>
+            <div id="moodOutput" class="mood-output"></div>
+          </div>
+
+          <!-- ৭. Fake Emergency -->
+          <div class="section-card">
+            <h2 class="section-title">🚨 জরুরি ঘোষণা</h2>
+            <button class="glow-btn danger" onclick="triggerEmergency()">
+              URGENT MESSAGE FOR RIMU 🚨
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 2: Friendship Test, Compliment Box & Funny Challenge -->
+        <div id="tab-games" class="tab-pane">
+          <!-- ৪. Friendship Test -->
+          <div class="section-card">
+            <h2 class="section-title">🤝 Friendship Test</h2>
+            <div class="scanner-box">
+              <p style="font-size:14px; color:#d8c8f0;">আমাদের বন্ধুত্ব আর তোর পাগলামির লেভেল মাপতে নিচে চাপ দে!</p>
+              <div class="progress-track" id="scanTrack">
+                <div class="progress-fill" id="scanFill"></div>
+              </div>
+              <div id="testResults" class="test-results"></div>
+            </div>
+            <button class="glow-btn pink" onclick="runFriendshipTest()">
+              <span>টেস্ট শুরু কর! 🧪</span><span>🔥</span>
+            </button>
+          </div>
+
+          <!-- ৫. Rimu's Compliment Box -->
+          <div class="section-card">
+            <h2 class="section-title">🎁 Rimu's Compliment Box</h2>
+            <div class="gift-stage">
+              <div id="giftBoxEmoji" class="gift-emoji" onclick="openComplimentBox()">🎁</div>
+              <p style="font-size:13.5px; color:#cbbde2; margin-top:6px;">গিফট বক্সে চাপ দে, তোর জন্য সারপ্রাইজ আছে!</p>
+              <div id="complimentOutput" class="compliment-card"></div>
+            </div>
+          </div>
+
+          <!-- ৬. Funny Challenge -->
+          <div class="section-card">
+            <h2 class="section-title">🎯 আজকের Funny Challenge</h2>
+            <div class="challenge-box">
+              <div id="challengeText" class="challenge-text"></div>
+              <div id="timerDisplay" class="timer-badge">⏱️ 00:00</div>
+              <div class="challenge-actions" style="margin-top:12px;">
+                <button class="mini-btn" onclick="completeChallenge()">চ্যালেঞ্জ ডান ✅</button>
+                <button class="mini-btn alt" onclick="nextChallenge()">আরেকটা দে 🔄</button>
+              </div>
+              <div id="timerBtnWrap" style="margin-top:8px; display:none;">
+                <button class="mini-btn alt" style="width:100%;" onclick="startChallengeTimer()">টাইমার চালু কর ⏱️</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: Friendship Memories -->
+        <div id="tab-memories" class="tab-pane">
+          <div class="section-card">
+            <h2 class="section-title">📸 Friendship Memories</h2>
+            <div class="memory-form">
+              <input type="text" id="memTitle" placeholder="স্মৃতির শিরোনাম (যেমন: সেই পাগলামির দিন 😍)" />
+              <textarea id="memNote" rows="2" placeholder="মজার কথা বা বিশেষ মুহূর্ত লিখ..."></textarea>
+              <label class="file-label" for="memPhoto">📷 বন্ধুত্বের ছবি যোগ কর (ঐচ্ছিক)</label>
+              <input type="file" id="memPhoto" accept="image/*" style="display:none;" onchange="previewFileName(this)" />
+              <div id="fileStatus" style="font-size:12px; color:#8ef5dc; margin-bottom:8px; text-align:center;"></div>
+              <button class="glow-btn pink" style="justify-content:center;" onclick="saveMemory()">
+                স্মৃতি সেভ কর 💖
+              </button>
+            </div>
+            <div id="memoriesList"></div>
+          </div>
+        </div>
+
+        <!-- TAB 4: Secret Message -->
+        <div id="tab-secret" class="tab-pane">
+          <div class="section-card">
+            <h2 class="section-title">💌 Secret Message</h2>
+            <div class="secret-stage">
+              <div id="lockHeart" class="lock-heart" onclick="showPasswordPrompt()">🔒💗</div>
+              <p style="font-size:14.5px; color:#d8c8f0;">তালাবদ্ধ হার্টে চাপ দিয়ে গোপন পাসওয়ার্ড দাও!</p>
+
+              <div id="passBox" class="pass-box">
+                <input type="password" id="secretPass" placeholder="পাসওয়ার্ড লিখ... (ইঙ্গিত: pagli)" />
+                <button class="glow-btn pink" style="justify-content:center;" onclick="unlockSecret()">
+                  আনলক কর 🔓
+                </button>
+              </div>
+
+              <div id="secretLetter" class="secret-letter">
+                <div style="font-size:32px; margin-bottom:8px;">💖✨</div>
+                “সব বন্ধুত্ব প্রতিদিন কথা বলার ওপর নির্ভর করে না। কিছু মানুষ দূরে থেকেও অনেক আপন হয়ে থাকে। তুই তাদের মধ্যে একজন। সব সময় হাসিখুশি থাকিস, আর নিজের যত্ন নিস।”
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- সমাপনী মেসেজ -->
+        <div class="closing-footer">
+          “এই পাগল পৃথিবীতে তুইও একটা পাগলি, আর সেই পাগলিটাকে হাসানোর জন্যই এই ছোট্ট অ্যাপটা বানানো! হাসতে থাকিস, পাগলি! ❤️😈”
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('fun', this)">
+          <span class="ico">😈</span><span>দুষ্টুমি</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('games', this)">
+          <span class="ico">🎁</span><span>সারপ্রাইজ</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('memories', this)">
+          <span class="ico">📸</span><span>স্মৃতি</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('secret', this)">
+          <span class="ico">💌</span><span>সিক্রেট</span>
+        </button>
+      </nav>
+    </main>
+  </div>
+
+  <!-- General Modal -->
+  <div id="appModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div id="modalEmoji" class="modal-emoji">😈</div>
+      <div id="modalTitle" class="modal-title">হেই পাগলি!</div>
+      <div id="modalText" class="modal-text"></div>
+      <button id="modalBtn" class="modal-btn" onclick="closeModal()">ঠিক আছে 😂</button>
+    </div>
+  </div>
+
+  <!-- Fake Block Overlay -->
+  <div id="fakeBlockScreen" class="fake-block-screen">
+    <div id="blockIcon" style="font-size:64px; margin-bottom:14px;">🚫</div>
+    <h2 id="blockTitle" style="color:#ff4d6d; margin-bottom:10px;">রিমুকে ব্লক করা হচ্ছে...</h2>
+    <p id="blockDesc" style="color:#d8c8f0; font-size:16px; max-width:300px; line-height:1.6;">
+      অপেক্ষা কর, তোর পাগলামির জন্য সিস্টেম তোরে ব্লক মারছে... 99%
+    </p>
+    <button id="blockCloseBtn" class="enter-btn" style="margin-top:24px; display:none;" onclick="closeFakeBlock()">হিহি! বেঁচে গেলি 😈💗</button>
+  </div>
+
+  <script>
+    // ==================== AUDIO & VIBRATION ====================
+    let soundOn = true;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function playTone(freq = 520, duration = 0.08, type = 'sine') {
+      if (navigator.vibrate) navigator.vibrate(25);
+      if (!soundOn) return;
+      try {
+        if (!audioCtx) audioCtx = new AudioCtx();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function toggleSound() {
+      soundOn = !soundOn;
+      document.getElementById('soundToggle').textContent = soundOn ? '🔊' : '🔇';
+      if (soundOn) playTone(660, 0.1);
+    }
+
+    // ==================== FLOATING HEARTS & STARS ====================
+    function initParticles() {
+      const container = document.getElementById('particles');
+      const icons = ['💖', '✨', '💜', '⭐', '💗', '😈', '🌸'];
+      for (let i = 0; i < 24; i++) {
+        const el = document.createElement('span');
+        el.className = 'particle';
+        el.textContent = icons[Math.floor(Math.random() * icons.length)];
+        el.style.left = Math.random() * 100 + '%';
+        el.style.fontSize = (12 + Math.random() * 14) + 'px';
+        el.style.animationDuration = (7 + Math.random() * 9) + 's';
+        el.style.animationDelay = (Math.random() * 8) + 's';
+        container.appendChild(el);
+      }
+    }
+    initParticles();
+
+    // ==================== NAVIGATION ====================
+    function enterCrazyWorld() {
+      playTone(620, 0.12, 'triangle');
+      document.getElementById('homeScreen').classList.add('hidden');
+      document.getElementById('mainApp').classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function backToHome() {
+      playTone(440, 0.1);
+      document.getElementById('mainApp').classList.remove('active');
+      document.getElementById('homeScreen').classList.remove('hidden');
+    }
+
+    function switchTab(tabName, btn) {
+      playTone(540, 0.06);
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById('tab-' + tabName).classList.add('active');
+      btn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ==================== MODAL HELPERS ====================
+    function showModal(emoji, title, text, btnText = 'হাহাহা! বুঝলাম 😂', onAction = null) {
+      document.getElementById('modalEmoji').textContent = emoji;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalText').textContent = text;
+      const btn = document.getElementById('modalBtn');
+      btn.textContent = btnText;
+      btn.onclick = onAction ? onAction : closeModal;
+      document.getElementById('appModal').classList.add('open');
+    }
+
+    function closeModal() {
+      playTone(480, 0.06);
+      document.getElementById('appModal').classList.remove('open');
+    }
+
+    // ==================== ২. দুষ্টুমি সেকশন ====================
+    const pagliLines = [
+      'হ্যাঁ, তুই ১০০% সার্টিফাইড পাগলি! কোনো সন্দেহ নেই 🤣',
+      'পৃথিবীতে দুই ধরনের মানুষ আছে—নরমাল মানুষ আর রিমু! তুই স্পেশাল পাগলি 😈',
+      'পাগলামি যদি অলিম্পিক গেম হতো, তুই প্রতিবার গোল্ড মেডেল আনতিস 🥇😂',
+      'আয়নায় তাকা, দেখবি একটা কিউট পাগলি তোর দিকে তাকিয়ে হাসছে! 😜'
+    ];
+    function pagliBtn() {
+      playTone(600, 0.09);
+      const msg = pagliLines[Math.floor(Math.random() * pagliLines.length)];
+      showModal('🤣', 'পাগলি অ্যালার্ট!', msg);
+    }
+
+    function brainBtn() {
+      playTone(500, 0.1);
+      showModal(
+        '🧠',
+        'মেডিকেল রিপোর্ট!',
+        '“ডাক্তার বলেছে তোর মাথা ঠিক হবে না, কারণ তুই জন্মগতভাবেই পাগলি!”'
+      );
+    }
+
+    function blockBtn() {
+      playTone(300, 0.15, 'sawtooth');
+      const screen = document.getElementById('fakeBlockScreen');
+      const icon = document.getElementById('blockIcon');
+      const title = document.getElementById('blockTitle');
+      const desc = document.getElementById('blockDesc');
+      const closeBtn = document.getElementById('blockCloseBtn');
+
+      icon.textContent = '🚫';
+      title.textContent = 'রিমুকে ব্লক করা হচ্ছে...';
+      title.style.color = '#ff4d6d';
+      desc.textContent = 'তোর অতিরিক্ত শয়তানির কারণে সিস্টেম তোরে ব্লক করে দিচ্ছে... ৯৯%';
+      closeBtn.style.display = 'none';
+      screen.classList.add('open');
+
+      setTimeout(() => {
+        playTone(720, 0.15, 'triangle');
+        icon.textContent = '🥹💖';
+        title.textContent = 'ব্লক ফেইলড!';
+        title.style.color = '#ff85c2';
+        desc.textContent = '“ব্লক দিতে গিয়েও পারলাম না, তোর মতো পাগল বন্ধু কোথায় পাবো!”';
+        closeBtn.style.display = 'inline-block';
+      }, 2100);
+    }
+
+    function closeFakeBlock() {
+      playTone(620, 0.08);
+      document.getElementById('fakeBlockScreen').classList.remove('open');
+    }
+
+    const roasts = [
+      'রিমু আর বুদ্ধি—এরা দুজন একে অপরের সাথে কোনোদিন দেখা করেনি, শুধু দূর থেকে হাই-হ্যালো করে! 🥴',
+      'তোর বুদ্ধি মাঝে মাঝে এত ছুটি নেয় যে গুগল ম্যাপ দিয়েও খুঁজে পাওয়া যায় না! 😂',
+      'রিমু যখন গভীরভাবে চিন্তা করে, তখন আসলে ওভাবেই তাকিয়ে থাকে—ভেতরে নেটওয়ার্ক থাকে না! 📶❌',
+      'বুদ্ধির দৌড়ে তুই সবসময় পিছন থেকে ফার্স্ট হোস! তবুও তুই সেরা 🤣'
+    ];
+    function roastBtn() {
+      playTone(580, 0.1);
+      const msg = roasts[Math.floor(Math.random() * roasts.length)];
+      showModal('🥴', 'রিমু বনাম বুদ্ধি', msg, 'হাহাহা বেইজ্জতি! 😂');
+    }
+
+    const mischiefs = [
+      'আজকের মিশন: কারো সিরিয়াস কথা শুনে হুট করে অকারণে হেসে দেওয়া! 🤭',
+      'আজকে তুই কাউকে অকারণে “তোর পেছনে কিছু একটা আছে!” বলে ভয় দেখাবি 😈',
+      'আজ সারাদিন নিজের মনে মনে ভাববি তুই হলিউডের সুপারস্টার, তারপর আয়নায় পোজ দিবি 😎',
+      'আজকে বন্ধুকে একটা ভয়েস নোট পাঠাবি যেখানে শুধু ৫ সেকেন্ড হাসবি, কোনো কথা বলবি না! 🤣',
+      'আজকের শয়তানি: চুপিচুপি ঘরের কারো খাবার থেকে এক কামড় চুরি করে খাওয়া! 🍕🤭'
+    ];
+    function dailyMischiefBtn() {
+      playTone(650, 0.09);
+      const dayIdx = new Date().getDate() % mischiefs.length;
+      const randomShift = Math.floor(Math.random() * mischiefs.length);
+      const msg = mischiefs[(dayIdx + randomShift) % mischiefs.length];
+      showModal('🤭', 'আজকের শয়তানি', msg, 'মিশন অ্যাকসেপ্টেড 😈');
+    }
+
+    // ==================== ৩. MOOD BOOSTER ====================
+    const moodMessages = [
+      '“এই পাগলি, মন খারাপ করে থাকার পারমিশন কে দিয়েছে?”',
+      '“তোর হাসিটা কিন্তু অনেক সুন্দর, তাই হাসি বন্ধ করা নিষেধ!”',
+      '“আজকে সব খারাপ লাগলেও মনে রাখিস, কাল আবার নতুন একটা দিন।”',
+      '“তুই যতই পাগলামি করিস, তোর মতো মানুষ সবার জীবনে থাকে না।”',
+      '“মন খারাপ হলে আমাকে মনে করিস, আর না পারলে চুপচাপ একটু বিশ্রাম নিস।”'
+    ];
+    let lastMood = -1;
+    function boostMood() {
+      playTone(700, 0.12);
+      let idx;
+      do { idx = Math.floor(Math.random() * moodMessages.length); } while (idx === lastMood);
+      lastMood = idx;
+      const box = document.getElementById('moodOutput');
+      box.style.display = 'block';
+      box.innerHTML = `💖 ${moodMessages[idx]}`;
+    }
+
+    // ==================== ৪. FRIENDSHIP TEST ====================
+    let testing = false;
+    function runFriendshipTest() {
+      if (testing) return;
+      testing = true;
+      playTone(520, 0.1);
+
+      const track = document.getElementById('scanTrack');
+      const fill = document.getElementById('scanFill');
+      const results = document.getElementById('testResults');
+      track.style.display = 'block';
+      results.style.display = 'none';
+      fill.style.width = '0%';
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        fill.style.width = progress + '%';
+        if (progress >= 100) {
+          clearInterval(interval);
+          testing = false;
+          playTone(800, 0.15, 'triangle');
+
+          const combos = [
+            ['১০০% পাগলামি 🤪', '২০০% শয়তানি 😈', '১০০০% বন্ধুত্ব 🤝💖', '০% স্বাভাবিক মানুষ 😂'],
+            ['১২০% পাগলামি 🤣', '২৫০% শয়তানি 🤭', '১০০০% বন্ধুত্ব 💗', '০.০১% স্বাভাবিক মানুষ 😜'],
+            ['৯৯৯% পাগলামি 😵‍💫', '২০০% শয়তানি 😈', 'ইনফিনিটি% বন্ধুত্ব ♾️❤️', '০% স্বাভাবিক মানুষ 😂'],
+            ['১০০% পাগলামি 🐒', '৩০০% শয়তানি 😏', '১০০০% বন্ধুত্ব 🫂💖', '-৫% স্বাভাবিক মানুষ 🤣']
+          ];
+          const pick = combos[Math.floor(Math.random() * combos.length)];
+          results.innerHTML = pick.map(item => `
+            <div class="stat-row">
+              <span>ফলাফল</span>
+              <span style="color:#ff85c2;">${item}</span>
+            </div>
+          `).join('');
+          results.style.display = 'block';
+        }
+      }, 130);
+    }
+
+    // ==================== ৫. RIMU'S COMPLIMENT BOX ====================
+    const compliments = [
+      '“তুই আসলে অনেক ভালো একজন মানুষ।” 💖',
+      '“তোর মতো বন্ধু পাওয়া সত্যিই ভাগ্যের ব্যাপার।” 🌟',
+      '“তুই পাগলি, কিন্তু মনটা অনেক সুন্দর।” 🌸',
+      '“তোর হাসি অনেক মানুষের দিন ভালো করে দিতে পারে।” 😊✨'
+    ];
+    let compIdx = 0;
+    function openComplimentBox() {
+      playTone(760, 0.14, 'triangle');
+      const boxEmoji = document.getElementById('giftBoxEmoji');
+      boxEmoji.textContent = '🎊';
+      setTimeout(() => { boxEmoji.textContent = '🎁'; }, 1200);
+
+      const out = document.getElementById('complimentOutput');
+      out.style.display = 'block';
+      out.textContent = compliments[compIdx % compliments.length];
+      compIdx++;
+    }
+
+    // ==================== ৬. FUNNY CHALLENGE ====================
+    const challenges = [
+      { text: '৩০ সেকেন্ড হাসতে হবে। 😂', seconds: 30 },
+      { text: 'নিজের একটা সুন্দর ছবি তুলতে হবে। 🤳✨', seconds: 0 },
+      { text: 'আজ কাউকে হাসাতে হবে। 😊💖', seconds: 0 },
+      { text: '৫ মিনিট কোনো চিন্তা না করে নিজের মতো থাকতে হবে। 🧘‍♀️🌸', seconds: 300 },
+      { text: 'নিজের জন্য একটা ভালো কথা বলতে হবে। 💕', seconds: 0 }
+    ];
+    let chIdx = new Date().getDate() % challenges.length;
+    let chTimer = null;
+
+    function renderChallenge() {
+      clearInterval(chTimer);
+      const ch = challenges[chIdx];
+      document.getElementById('challengeText').textContent = ch.text;
+      document.getElementById('timerDisplay').style.display = 'none';
+      document.getElementById('timerBtnWrap').style.display = ch.seconds > 0 ? 'block' : 'none';
+    }
+    renderChallenge();
+
+    function nextChallenge() {
+      playTone(540, 0.08);
+      chIdx = (chIdx + 1) % challenges.length;
+      renderChallenge();
+    }
+
+    function startChallengeTimer() {
+      clearInterval(chTimer);
+      let left = challenges[chIdx].seconds;
+      const badge = document.getElementById('timerDisplay');
+      badge.style.display = 'inline-block';
+
+      const updateBadge = () => {
+        const m = String(Math.floor(left / 60)).padStart(2, '0');
+        const s = String(left % 60).padStart(2, '0');
+        badge.textContent = `⏱️ ${m}:${s}`;
+      };
+      updateBadge();
+
+      chTimer = setInterval(() => {
+        left--;
+        updateBadge();
+        if (left <= 0) {
+          clearInterval(chTimer);
+          playTone(850, 0.2);
+          badge.textContent = '🎉 সময় শেষ! দারুণ করেছিস!';
+        }
+      }, 1000);
+    }
+
+    function completeChallenge() {
+      clearInterval(chTimer);
+      playTone(780, 0.15, 'triangle');
+      showModal('🏆', 'সাবাস পাগলি!', 'চ্যালেঞ্জ কমপ্লিট! তুই আসলেই একটা সুপারস্টার বন্ধু! 🌟💖', 'ইয়ে! 😎');
+    }
+
+    // ==================== ৭. FAKE EMERGENCY ====================
+    function triggerEmergency() {
+      playTone(400, 0.16, 'square');
+      showModal(
+        '🚨',
+        'URGENT MESSAGE FOR RIMU',
+        '“একটা খুব গুরুত্বপূর্ণ কথা আছে… সিরিয়াস হয়ে পড়!”',
+        'Next ➡️',
+        () => {
+          playTone(750, 0.12, 'triangle');
+          showModal(
+            '🤣',
+            'ব্রেকিং নিউজ!',
+            '“তুই এত পাগলি কেন? এই প্রশ্নের উত্তর আজও বিজ্ঞানীরা খুঁজে পায়নি! 🤣”',
+            'হাহাহা শয়তান! 😂'
+          );
+        }
+      );
+    }
+
+    // ==================== ৮. FRIENDSHIP MEMORIES ====================
+    const DEFAULT_MEMORIES = [
+      {
+        id: 1,
+        date: 'বিশেষ স্মৃতি 💖',
+        title: 'যেদিন প্রথম আমাদের বন্ধুত্ব শুরু',
+        note: 'তখন কি আর জানতাম এমন একটা পাগলির সাথে জীবনটা এত মজার হয়ে উঠবে! 😂',
+        img: ''
+      }
+    ];
+
+    let pendingImageBase64 = '';
+
+    function previewFileName(input) {
+      const file = input.files[0];
+      if (!file) return;
+      document.getElementById('fileStatus').textContent = 'ছবি প্রসেস হচ্ছে...';
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const maxW = 600;
+          const scale = img.width > maxW ? maxW / img.width : 1;
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          pendingImageBase64 = canvas.toDataURL('image/jpeg', 0.75);
+          document.getElementById('fileStatus').textContent = '✅ ছবি যুক্ত হয়েছে!';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function getMemories() {
+      try {
+        const saved = localStorage.getItem('rimu_memories');
+        return saved ? JSON.parse(saved) : DEFAULT_MEMORIES;
+      } catch {
+        return DEFAULT_MEMORIES;
+      }
+    }
+
+    function renderMemories() {
+      const list = document.getElementById('memoriesList');
+      const items = getMemories();
+      list.innerHTML = items.map(m => `
+        <div class="memory-item">
+          <button class="del-mem" onclick="deleteMemory(${m.id})" title="মুছুন">✕</button>
+          ${m.img ? `<img src="${m.img}" alt="Memory">` : ''}
+          <div class="memory-date">${m.date}</div>
+          <h4 style="color:#ff94cc; margin-bottom:4px;">${escapeHtml(m.title)}</h4>
+          <p style="font-size:14px; color:#e6dcf5; line-height:1.5;">${escapeHtml(m.note)}</p>
+        </div>
+      `).join('');
+    }
+
+    function saveMemory() {
+      const title = document.getElementById('memTitle').value.trim();
+      const note = document.getElementById('memNote').value.trim();
+      if (!title && !note && !pendingImageBase64) {
+        showModal('😜', 'খালি কেন?', 'আগে কোনো স্মৃতি বা ছবি তো যোগ কর পাগলি!');
+        return;
+      }
+      playTone(680, 0.12);
+      const items = getMemories();
+      const today = new Date().toLocaleDateString('bn-BD');
+      items.unshift({
+        id: Date.now(),
+        date: today,
+        title: title || 'সুন্দর একটি মুহূর্ত 💖',
+        note: note || 'আমাদের পাগলামির দিন!',
+        img: pendingImageBase64
+      });
+      localStorage.setItem('rimu_memories', JSON.stringify(items));
+
+      document.getElementById('memTitle').value = '';
+      document.getElementById('memNote').value = '';
+      document.getElementById('memPhoto').value = '';
+      document.getElementById('fileStatus').textContent = '';
+      pendingImageBase64 = '';
+      renderMemories();
+      showModal('📸', 'সেভ হয়েছে!', 'আমাদের নতুন স্মৃতি সুন্দরভাবে যোগ করা হয়েছে! 💖');
+    }
+
+    function deleteMemory(id) {
+      playTone(400, 0.08);
+      const items = getMemories().filter(m => m.id !== id);
+      localStorage.setItem('rimu_memories', JSON.stringify(items));
+      renderMemories();
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+    }
+    renderMemories();
+
+    // ==================== ৯. SECRET MESSAGE ====================
+    const SECRET_PASSWORD = 'pagli'; // চাইলে এখান থেকে পাসওয়ার্ড বদলাতে পারবেন
+
+    function showPasswordPrompt() {
+      playTone(580, 0.08);
+      document.getElementById('passBox').style.display = 'block';
+    }
+
+    function unlockSecret() {
+      const val = document.getElementById('secretPass').value.trim().toLowerCase();
+      if (val === SECRET_PASSWORD || val === 'rimu' || val === 'পাগলি') {
+        playTone(840, 0.18, 'triangle');
+        document.getElementById('lockHeart').textContent = '💖🔓';
+        document.getElementById('passBox').style.display = 'none';
+        document.getElementById('secretLetter').style.display = 'block';
+      } else {
+        playTone(250, 0.18, 'sawtooth');
+        showModal('🔒', 'ভুল পাসওয়ার্ড!', 'সঠিক পাসওয়ার্ড দাও পাগলি! (হিন্ট: pagli বা rimu লিখো 😜)');
+      }
+    }
+  </script>
+</body>
+</html>
